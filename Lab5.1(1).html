@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Завдання</title>
+  <style>
+    #yellowBlock {
+      background-color: yellow;
+      padding: 20px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#" onclick="loadContent('languages')">Мови</a>
+  <a href="#" onclick="loadContent('students')">Студенти</a>
+  
+  <div id="yellowBlock"></div>
+
+  <script>
+    function loadContent(type) {
+      var yellowBlock = document.getElementById("yellowBlock");
+
+      // Завантаження вмісту в залежності від типу
+      if (type === "languages") {
+        fetch('1.txt')
+          .then(response => response.json())
+          .then(data => {
+            yellowBlock.textContent = "Мови програмування: " + data.join(", ");
+          })
+          .catch(error => console.error('Error fetching languages:', error));
+      } else if (type === "students") {
+        fetch('2.txt')
+          .then(response => response.json())
+          .then(data => {
+            yellowBlock.textContent = "Прізвища студентів: " + data.join(", ");
+          })
+          .catch(error => console.error('Error fetching students:', error));
+      }
+    }
+  </script>
+
+</body>
+</html>
